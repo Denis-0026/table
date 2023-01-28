@@ -9,7 +9,7 @@ export class BaseComponent<T> implements OnChanges {
     @Input() isShowHeader: boolean = true;
     @Input() isShowPaging: boolean = true;
 
-    @Output() updateData = new EventEmitter<number>();
+    @Output() updateData = new EventEmitter<[number, number]>();
 
     public keys: Array<keyof T> | undefined;
 
@@ -31,7 +31,7 @@ export class BaseComponent<T> implements OnChanges {
         }
     }
 
-    changePageSise(sise: number): void {
+    changePageSise(sise: [number, number]): void {
         this.updateData.next(sise);
     }
 }

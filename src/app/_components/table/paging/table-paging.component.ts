@@ -9,27 +9,36 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 export class TablePagingComponent implements OnInit {
 
     @Input() lenght?: number;
-    @Input() rowsOnPageList: Array<number> = [5, 10, 15, 20, 25];
+    @Input() pageSiseList: Array<number> = [5, 10, 15, 20, 25];
 
-    @Output() selectedSise = new EventEmitter<number>();
+    // TODO
+    @Output() selectedSise = new EventEmitter<[number, number]>();
 
-    private rowsOnPage: number = 5;
-    private page: number = 1;
+    public pageSise: number = 5;
+    public page: number = 1;
+    public lastPage: number = 1;
 
     constructor() { }
 
     ngOnInit() { }
 
-    changePageSise(sise: string): void {
-        this.rowsOnPage = Number(sise);
-        if(this.rowsOnPage) {
-            this.selectedSise.next(this.rowsOnPage);
+    ngOnChanges(): void {
+        if(this.lenght) {
+            this.lastPage = Math.ceil(this.lenght / this.pageSise);
         }
-        
+    }
+
+    changePageSise(sise: string): void {
+        this.pageSise = Number(sise);
+        if(this.pageSise && this.lenght) {
+            this.lastPage = Math.ceil(this.lenght / this.pageSise);
+            this.selectedSise.next([this.page, this.pageSise]);
+        }
     }
 
     goToFirstPage(): void {
         this.page = 1;
+        this.selectedSise.next([this.page, this.pageSise]);
         console.log(this.page);
     }
 
@@ -38,15 +47,22 @@ export class TablePagingComponent implements OnInit {
         if(this.page < 1) {
             this.page = 1;
         }
+        this.selectedSise.next([this.page, this.pageSise]);
         console.log(this.page);
     }
 
     goToNextPage(): void {
         this.page++;
+        if(this.page > this.lastPage) {
+            this.page = this.lastPage;
+        }
+        this.selectedSise.next([this.page, this.pageSise]);
         console.log(this.page);
     }
 
     goToLastPage(): void {
+        this.page = this.lastPage;
+        this.selectedSise.next([this.page, this.pageSise]);
         console.log(this.page);
     }
 }

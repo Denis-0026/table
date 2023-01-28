@@ -1,13 +1,15 @@
 <div class="table__paging">
     <div>
         <select #dimensions (change)="changePageSise(dimensions.value)">
-            <option *ngFor="let sise of rowsOnPageList" [value]="sise">
+            <option *ngFor="let sise of pageSiseList" [value]="sise">
                 {{ sise }}
             </option>
           </select>
     </div>
     <div class="table__paging_info">
-        11 – 15 из {{ lenght }}
+        {{ (page * pageSise - pageSise + 1) }} – 
+        {{ ((lenght && (page * pageSise > lenght)) ? lenght : page * pageSise) }} из 
+        {{ lenght }}
     </div>
     <div class="table__paging_actions">
         <div class="table__paging_action" (click)="goToFirstPage()">
