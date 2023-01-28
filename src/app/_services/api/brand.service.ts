@@ -12,7 +12,7 @@ export class BrandService {
 
     constructor(private httpClient: HttpClient) { }
 
-    public getBrands(page: number = 3, limit: number = 2): Observable<IBrandData> {
+    public getBrands(page: number = 1, limit: number = 20): Observable<IBrandData> {
         return this.httpClient.get<IBrandData>(`${environment.apiUrl}/brands`).pipe(
             tap(x => console.log(x)),
             map(x => {

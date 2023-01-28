@@ -1,4 +1,6 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { BaseComponent } from './base.component';
 
 @Component({
     selector: 'app-table',
@@ -6,35 +8,12 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
     styleUrls: ['./table.component.scss'],
 })
 
-export class TableComponent<T> implements OnInit, OnChanges {
-
-    @Input() data?: Array<T>;
-    @Input() lenght?: number;
-
-    @Input() isShowHeader: boolean = true;
-    @Input() isShowPaging: boolean = true;
-
-    public keys: Array<keyof T> | undefined;
+export class TableComponent<T> extends BaseComponent<T> implements OnInit {
 
     constructor() {
+        super();
     }
 
     ngOnInit() {
-    }
-
-    ngOnChanges() {
-        if(this.data) {
-            this.getPropertiesKeys();
-        }
-    }
-
-    getPropertiesKeys(): void {
-        this.keys = [];
-        let el = this.data?.find(x => x !== undefined);
-        if(el) {
-            for (let key in el) {
-                this.keys.push(key as keyof T);
-            }
-        }
     }
 }

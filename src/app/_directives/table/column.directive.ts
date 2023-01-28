@@ -7,20 +7,24 @@ import ConfigurationJson from '../../../assets/configs/table-configuration.json'
 })
 export class ColumnDirective implements OnChanges {
 
-    @Input('key') key: any;
+    @Input('key') key?: string | number | symbol;
+
+    // TODO
     private configuration = ConfigurationJson;
      
     constructor(private elementRef: ElementRef, private renderer: Renderer2){
     }
 
     ngOnChanges() {
-        this.setStyle();
+        if(this.key) {
+            this.setStyle();
+        }
     }
 
     setStyle() {
-        let style = this.configuration.find(x => x.code == this.key);
-        if (style && style.style && style.style.width) {
-            this.renderer.setStyle(this.elementRef.nativeElement, "min-width", style.style.width);
+        let propertyConf = this.configuration.find(x => x.code == this.key as string);
+        if (propertyConf && propertyConf.style && propertyConf.style.width) {
+            this.renderer.setStyle(this.elementRef.nativeElement, "min-width", propertyConf.style.width);
         }
     }
 }

@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { TableComponent } from './table.component';
 import { ColumnDirective } from '@app/_directives/table/column.directive';
 import { TableHeaderPipe } from '@app/_pipes/table/table-header.pipe';
+
+import { TableComponent } from './table.component';
 import { TableHeaderComponent } from './header/table-header.component';
 import { TableBodyComponent } from './body/table-body.component';
-import { TableFooterComponent } from './footer/table-footer.component';
+import { TablePagingComponent } from './paging/table-paging.component';
 
 @NgModule({
     imports: [
@@ -22,7 +23,7 @@ import { TableFooterComponent } from './footer/table-footer.component';
         TableComponent, 
         TableHeaderComponent,
         TableBodyComponent,
-        TableFooterComponent,
+        TablePagingComponent,
     ],
     providers: [],
 })
