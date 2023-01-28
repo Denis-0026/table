@@ -1,7 +1,7 @@
 .table__body {
     display: flex;
     flex-direction: column;
-    max-height: 400px;
+    height: 400px;
     width: max-content;
     overflow-y: auto;
 
@@ -9,12 +9,14 @@
         display: flex;
         flex-direction: row;
         min-height: 50px;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: #0000001f;
 
         .table__body_item {
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: aquamarine;
             margin: 1px;
         }
     }

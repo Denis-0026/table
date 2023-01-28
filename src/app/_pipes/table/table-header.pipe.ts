@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import ConfigurationJson from '../../../assets/configs/table-configuration.json';
+import ConfigurationJson from '../../../assets/configs/table-brands-configuration.json';
 
 @Pipe({
     name: 'header'

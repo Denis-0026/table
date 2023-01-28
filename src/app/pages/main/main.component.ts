@@ -17,11 +17,11 @@ export class MainComponent implements OnInit {
     constructor(private brandService: BrandService) { }
 
     ngOnInit(): void {
-        this.getBrands();
+        this.getBrands(5);
     }
 
-    getBrands(): void {
-        this.brandService.getBrands().subscribe(res => {
+    getBrands(sise: number): void {
+        this.brandService.getBrands(1, sise).subscribe(res => {
             this.brands = res.data;
             this.lenght = res.length;
         });

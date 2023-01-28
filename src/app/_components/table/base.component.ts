@@ -1,4 +1,4 @@
-import { Directive, Input, OnChanges } from '@angular/core';
+import { Directive, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 
 @Directive()
 export class BaseComponent<T> implements OnChanges {
@@ -8,6 +8,8 @@ export class BaseComponent<T> implements OnChanges {
 
     @Input() isShowHeader: boolean = true;
     @Input() isShowPaging: boolean = true;
+
+    @Output() updateData = new EventEmitter<number>();
 
     public keys: Array<keyof T> | undefined;
 
@@ -27,5 +29,9 @@ export class BaseComponent<T> implements OnChanges {
                 this.keys.push(key as keyof T);
             }
         }
+    }
+
+    changePageSise(sise: number): void {
+        this.updateData.next(sise);
     }
 }

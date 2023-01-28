@@ -1,6 +1,6 @@
 import {Directive, ElementRef, Input, OnChanges, Renderer2} from '@angular/core';
 
-import ConfigurationJson from '../../../assets/configs/table-configuration.json';
+import ConfigurationJson from '../../../assets/configs/table-brands-configuration.json';
  
 @Directive({
     selector: '[appColumn]'
