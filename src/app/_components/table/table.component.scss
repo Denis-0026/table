@@ -1,0 +1,14 @@
+.table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .table__data {
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        .table__body {
+            display: flex;
+        }
+    }
+}

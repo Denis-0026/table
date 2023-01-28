@@ -1,0 +1,21 @@
+.table__body {
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+    width: max-content;
+    overflow-y: auto;
+
+    .table__body_row {
+        display: flex;
+        flex-direction: row;
+        min-height: 50px;
+
+        .table__body_item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: aquamarine;
+            margin: 1px;
+        }
+    }
+}

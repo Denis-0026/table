@@ -1,0 +1,12 @@
+<div class="table__header">
+    <div class="table__header_col" *ngFor="let key of keys" appColumn [key] = 'key'>
+        <div class="table__header_col_item">
+            <div class="table__header_col_item_title">
+                {{ key | header }}
+            </div>
+            <div class="table__header_col_item_search">
+                <input type="text">
+            </div>
+        </div>
+    </div>
+</div>

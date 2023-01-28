@@ -1,0 +1,37 @@
+.table__header {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    position: sticky; 
+    top: 0; 
+    z-index: 1;
+
+    .table__header_col {
+        display: flex;
+        flex-direction: row;
+        background-color: white;
+        margin: 0 1px;
+
+        .table__header_col_item {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            .table__header_col_item_title {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .table__header_col_item_search {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+
+                input {
+                    width: 80%;
+                }
+            }
+        }
+    }
+}

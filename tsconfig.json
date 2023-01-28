@@ -21,7 +21,13 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "resolveJsonModule": true, 
+    "esModuleInterop": true,
+    "paths": {
+        "@app/*": ["src/app/*"],
+        "@environments/*": ["src/environments/*"]
+    },
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

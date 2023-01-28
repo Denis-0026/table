@@ -1,0 +1,14 @@
+<div class="table">
+    <div class="table__data">
+        <ng-container *ngIf="isShowHeader">
+            <app-table-header [keys]="keys"></app-table-header>
+        </ng-container>
+        <div class="table__body">
+            <app-table-body [keys]="keys" [data]="data"></app-table-body>
+        </div>
+    </div>
+    
+    <ng-container *ngIf="isShowPaging">
+        <app-table-footer></app-table-footer>
+    </ng-container>
+</div>

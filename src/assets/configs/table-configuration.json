@@ -1,0 +1,77 @@
+[
+    {
+        "code": "id",
+        "name": "ID",
+        "style": {"width": "400px", "font-family": "Verdana"}
+    },
+    {
+        "code": "wbRating",
+        "name": "Рэйтинг",
+        "style": {"width": "100px", "font-family": "Verdana"}
+    },
+    {
+        "code": "reviewsCount",
+        "name": "Количество просмотров",
+        "style": {"width": "200px", "font-family": "Verdana"}
+    },
+    {
+        "code": "nomenclature",
+        "name": "Номенклатура",
+        "style": {"width": "150px", "font-family": "Verdana"}
+    },
+    {
+        "code": "sku",
+        "name": "SKU",
+        "style": {"width": "100px", "font-family": "Verdana"}
+    },
+    {
+        "code": "name",
+        "name": "Название",
+        "style": {"width": "150px", "font-family": "Verdana"}
+    },
+    {
+        "code": "brandName",
+        "name": "Название Брэнда",
+        "style": {"width": "150px", "font-family": "Verdana"}
+    },
+    {
+        "code": "brandId",
+        "name": "Brand ID",
+        "style": {"width": "400px", "font-family": "Verdana"}
+    },
+    {
+        "code": "image",
+        "name": "Логотип",
+        "style": {"width": "250px", "font-family": "Verdana"}
+    },
+    {
+        "code": "preview",
+        "name": "Предпросмотр",
+        "style": {"width": "250px", "font-family": "Verdana"}
+    },
+    {
+        "code": "ordered",
+        "name": "Заказы",
+        "style": {"width": "100px", "font-family": "Verdana"}
+    },
+    {
+        "code": "soldQuantity",
+        "name": "Продано кол-во",
+        "style": {"width": "150px", "font-family": "Verdana"}
+    },
+    {
+        "code": "soldAmount",
+        "name": "Продано сумма",
+        "style": {"width": "150px", "font-family": "Verdana"}
+    },
+    {
+        "code": "orderedAmount",
+        "name": "Заказанно сумма",
+        "style": {"width": "250px", "font-family": "Verdana"}
+    },
+    {
+        "code": "availability",
+        "name": "Доступно",
+        "style": {"width": "100px", "font-family": "Verdana"}
+    }
+]
