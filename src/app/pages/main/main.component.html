@@ -1,3 +1,4 @@
 <div class="main">
-    <app-table [data]="brands" [lenght]="lenght"></app-table>
+    <app-table [data]="brands" [lenght]="lenght" (updateData)="getBrands($event)"></app-table>
+    <app-table [data]="users" [lenght]="lenght" (updateData)="getUsers($event)"></app-table>
 </div>

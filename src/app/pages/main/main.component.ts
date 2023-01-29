@@ -1,8 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, tap } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
 import { BrandService, UserService } from '@app/_services/api';
-import { TableService } from '@app/_services/app';
 import { IBrand, ITableParams, IUser } from '@app/_models';
 
 @Component({
@@ -11,29 +9,16 @@ import { IBrand, ITableParams, IUser } from '@app/_models';
     styleUrls: ['./main.component.scss'],
 })
 
-export class MainComponent implements OnInit, OnDestroy {
+export class MainComponent implements OnInit {
 
     public brands: Array<IBrand> | undefined;
     public users: Array<IUser> | undefined;
     public lenght: number | undefined;
 
-    private brandsSubscription: Subscription;
-
-    constructor(private brandService: BrandService, private tableService: TableService, private userService: UserService) {
-        this.brandsSubscription = new Subscription();
+    constructor(private brandService: BrandService, private userService: UserService) {
     }
 
     ngOnInit(): void {
-        this.createBrandsSubscription();
-    }
-
-    createBrandsSubscription(): void {
-        this.brandsSubscription = this.tableService.params$.pipe(
-            tap(params => {
-                this.getBrands(params);
-                // this.getUsers(params);
-            })
-        ).subscribe();
     }
 
     getBrands(params: ITableParams): void {
@@ -48,9 +33,5 @@ export class MainComponent implements OnInit, OnDestroy {
             this.users = res.data;
             this.lenght = res.length;
         });
-    }
-
-    ngOnDestroy(): void {
-        this.brandsSubscription.unsubscribe();
     }
 }

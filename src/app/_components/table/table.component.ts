@@ -7,14 +7,12 @@ import { BaseComponent } from './base.component';
     selector: 'app-table',
     templateUrl: 'table.component.html',
     styleUrls: ['./table.component.scss'],
+    providers: [TableService],
 })
 
 export class TableComponent<T> extends BaseComponent<T> implements OnInit {
 
-    constructor(public override tableService: TableService) {
+    constructor(tableService: TableService) {
         super(tableService);
-    }
-
-    ngOnInit() {
     }
 }

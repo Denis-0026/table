@@ -1,26 +1,46 @@
-import { Directive, Input, OnChanges } from '@angular/core';
+import { Directive, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 
 import { ITableParams } from '@app/_models';
 import { TableService } from '@app/_services/app';
+import { Subscription, tap } from 'rxjs';
 
 @Directive()
-export class BaseComponent<T> implements OnChanges {
+export class BaseComponent<T> implements OnInit, OnChanges, OnDestroy {
     
     @Input() data?: Array<T>;
     @Input() lenght?: number;
-
     @Input() isShowHeader: boolean = true;
     @Input() isShowPaging: boolean = true;
 
-    public keys: Array<keyof T> | undefined;
-    public params: ITableParams = { page: 1, pageSise: 5 };
+    @Output() updateData = new EventEmitter<ITableParams>();
 
-    constructor(public tableService: TableService) { }
+    public keys: Array<keyof T> | undefined;
+    private paramsSubscription: Subscription;
+
+    constructor(protected tableService: TableService) {
+        this.paramsSubscription = new Subscription();
+    }
+
+    ngOnInit() {
+        this.createParamsSubscription();
+    }
 
     ngOnChanges() {
-        if(this.data) {
+        if(this.data && !this.keys) {
             this.getPropertiesKeys();
         }
+    }
+
+    ngOnDestroy(): void {
+        this.paramsSubscription.unsubscribe();
+    }
+
+    createParamsSubscription(): void {
+        this.paramsSubscription = this.tableService.params$.pipe(
+            tap(params => {
+                this.updateData.next(params);
+            })
+        ).subscribe();
     }
 
     getPropertiesKeys(): void {
@@ -31,11 +51,5 @@ export class BaseComponent<T> implements OnChanges {
                 this.keys.push(key as keyof T);
             }
         }
-    }
-
-    changePageSise(sise: [number, number]): void {
-        this.params.page = sise[0];
-        this.params.pageSise = sise[1];
-        this.tableService.updateParams(this.params);
     }
 }
