@@ -16,7 +16,9 @@ export class UserService extends Filter<IUser> {
     public getUsers(params: ITableParams): Observable<IUserData> {
         return this.httpClient.get<IUserData>(`${environment.apiUrl}/users`).pipe(
             map(x => {
-                x.data = this.filterData(x.data, params);
+                let a = this.filterData(x.data, params);
+                x.data = a[0];
+                x.length = a[1];
                 return x;
             })
         );

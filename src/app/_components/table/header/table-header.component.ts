@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Entities } from '@app/_enums';
 import { TableService } from '@app/_services/app';
 
 @Component({
@@ -10,6 +11,7 @@ import { TableService } from '@app/_services/app';
 export class TableHeaderComponent<T> implements OnInit {
 
     @Input() keys?: Array<keyof T>;
+    @Input() type?: Entities;
 
     constructor(private tableService: TableService) { }
 

@@ -1,6 +1,7 @@
 import { Directive, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 
 import { ITableParams } from '@app/_models';
+import { Entities } from '@app/_enums';
 import { TableService } from '@app/_services/app';
 import { Subscription, tap } from 'rxjs';
 
@@ -9,6 +10,7 @@ export class BaseComponent<T> implements OnInit, OnChanges, OnDestroy {
     
     @Input() data?: Array<T>;
     @Input() lenght?: number;
+    @Input() type?: Entities;
     @Input() isShowHeader: boolean = true;
     @Input() isShowPaging: boolean = true;
 

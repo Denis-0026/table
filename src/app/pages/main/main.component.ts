@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { BrandService, UserService } from '@app/_services/api';
 import { IBrand, ITableParams, IUser } from '@app/_models';
+import { Entities } from '@app/_enums';
 
 @Component({
     selector: 'app-main',
@@ -15,6 +16,9 @@ export class MainComponent implements OnInit {
     public users: Array<IUser> | undefined;
     public lenght: number | undefined;
 
+    public brandType: Entities = Entities.Brand;
+    public userType: Entities = Entities.User;
+
     constructor(private brandService: BrandService, private userService: UserService) {
     }
 
@@ -22,7 +26,6 @@ export class MainComponent implements OnInit {
     }
 
     getBrands(params: ITableParams): void {
-        console.log(params);
         this.brandService.getBrands(params).subscribe(res => {
             this.brands = res.data;
             this.lenght = res.length;
@@ -30,7 +33,6 @@ export class MainComponent implements OnInit {
     }
 
     getUsers(params: ITableParams): void {
-        console.log(params);
         this.userService.getUsers(params).subscribe(res => {
             this.users = res.data;
             this.lenght = res.length;

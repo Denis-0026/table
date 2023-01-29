@@ -1,0 +1,12 @@
+[
+    {
+        "code": "firstName",
+        "name": "Имя",
+        "style": {"width": "200px", "font-family": "Verdana"}
+    },
+    {
+        "code": "lastName",
+        "name": "Фамилия",
+        "style": {"width": "200px", "font-family": "Verdana"}
+    }
+]

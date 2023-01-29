@@ -1,6 +1,6 @@
 <tbody class="table__body">
     <tr class="table__body_row" *ngFor="let row of data">
-        <th class="table__body_item" *ngFor="let key of keys" appColumn [key] = 'key'>
+        <th class="table__body_item" *ngFor="let key of keys" appColumn [key] = 'key' [type]='type'>
             {{ row[key] }}
         </th>
     </tr>
