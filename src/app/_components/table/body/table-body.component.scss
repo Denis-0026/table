@@ -1,6 +1,7 @@
 .table__body {
     display: flex;
     flex-direction: column;
+    min-width: 100%;
     height: 400px;
     width: max-content;
     overflow-y: auto;

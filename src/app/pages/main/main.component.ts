@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, tap } from 'rxjs';
 
-import { BrandService } from '@app/_services/api';
+import { BrandService, UserService } from '@app/_services/api';
 import { TableService } from '@app/_services/app';
-import { IBrand, ITableParams } from '@app/_models';
+import { IBrand, ITableParams, IUser } from '@app/_models';
 
 @Component({
     selector: 'app-main',
@@ -14,11 +14,12 @@ import { IBrand, ITableParams } from '@app/_models';
 export class MainComponent implements OnInit, OnDestroy {
 
     public brands: Array<IBrand> | undefined;
+    public users: Array<IUser> | undefined;
     public lenght: number | undefined;
 
     private brandsSubscription: Subscription;
 
-    constructor(private brandService: BrandService, private tableService: TableService) {
+    constructor(private brandService: BrandService, private tableService: TableService, private userService: UserService) {
         this.brandsSubscription = new Subscription();
     }
 
@@ -30,6 +31,7 @@ export class MainComponent implements OnInit, OnDestroy {
         this.brandsSubscription = this.tableService.params$.pipe(
             tap(params => {
                 this.getBrands(params);
+                // this.getUsers(params);
             })
         ).subscribe();
     }
@@ -37,6 +39,13 @@ export class MainComponent implements OnInit, OnDestroy {
     getBrands(params: ITableParams): void {
         this.brandService.getBrands(params).subscribe(res => {
             this.brands = res.data;
+            this.lenght = res.length;
+        });
+    }
+
+    getUsers(params: ITableParams): void {
+        this.userService.getUsers(params).subscribe(res => {
+            this.users = res.data;
             this.lenght = res.length;
         });
     }

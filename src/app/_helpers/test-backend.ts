@@ -4,7 +4,8 @@ import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 import BrandsJson from '../../assets/data/brands.json';
-import { IBrand, IBrandData } from '@app/_models';
+import UsersJson from '../../assets/data/users.json';
+import { IBrand, IBrandData, IUser, IUserData } from '@app/_models';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -21,14 +22,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             switch (true) {
                 case url.endsWith('/brands') && method === 'GET':
                     return getBrands();
+                case url.endsWith('/users') && method === 'GET':
+                    return getUsers();
                 default:
                     return next.handle(request);
-            }    
+            }
         }
 
-        function getBrands(): Observable<HttpResponse<any>> {
+        function getBrands(): Observable<HttpResponse<IBrandData>> {
             let brands = BrandsJson as unknown as Array<IBrand>;
-            let response: IBrandData = { data: brands, length: brands.length};
+            let response: IBrandData = { data: brands, length: brands.length };
+            return ok(response);
+        }
+
+        function getUsers(): Observable<HttpResponse<IUser>> {
+            let users = UsersJson as unknown as Array<IUser>;
+            let response: IUserData = { data: users, length: users.length };
             return ok(response);
         }
 

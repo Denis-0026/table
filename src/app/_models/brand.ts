@@ -17,6 +17,6 @@ export interface IBrand {
 }
 
 export interface IBrandData {
-    data: Array<IBrand>,
-    length: number
+    data: Array<IBrand>;
+    length: number;
 }

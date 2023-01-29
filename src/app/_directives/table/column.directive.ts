@@ -25,6 +25,8 @@ export class ColumnDirective implements OnChanges {
         let propertyConf = this.configuration.find(x => x.code == this.key as string);
         if (propertyConf && propertyConf.style && propertyConf.style.width) {
             this.renderer.setStyle(this.elementRef.nativeElement, "min-width", propertyConf.style.width);
+        } else {
+            this.renderer.setStyle(this.elementRef.nativeElement, "min-width", "200px");
         }
     }
 }
