@@ -22,6 +22,7 @@ export class MainComponent implements OnInit {
     }
 
     getBrands(params: ITableParams): void {
+        console.log(params);
         this.brandService.getBrands(params).subscribe(res => {
             this.brands = res.data;
             this.lenght = res.length;
@@ -29,6 +30,7 @@ export class MainComponent implements OnInit {
     }
 
     getUsers(params: ITableParams): void {
+        console.log(params);
         this.userService.getUsers(params).subscribe(res => {
             this.users = res.data;
             this.lenght = res.length;

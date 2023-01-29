@@ -6,7 +6,7 @@
                     {{ key | header }}
                 </div>
                 <div class="table__header_col_item_search">
-                    <input type="text">
+                    <input #searchByField type="text" (keyup)="search(key, searchByField.value)">
                 </div>
             </div>
         </th>

@@ -3,19 +3,20 @@ import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 
 import { environment } from '@environments/environment';
-import { ITableParams } from '@app/_models';
-import { IUserData } from '@app/_models/user';
+import { ITableParams, IUser, IUserData } from '@app/_models';
+import { Filter } from '@app/_helpers';
 
 @Injectable({ providedIn: 'root' })
-export class UserService {
+export class UserService extends Filter<IUser> {
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient) {
+        super();
+    }
 
     public getUsers(params: ITableParams): Observable<IUserData> {
         return this.httpClient.get<IUserData>(`${environment.apiUrl}/users`).pipe(
-            tap(x => console.log(x)),
             map(x => {
-                x.data = x.data.slice((params.page - 1) * params.pageSise, params.page * params.pageSise)
+                x.data = this.filterData(x.data, params);
                 return x;
             })
         );
