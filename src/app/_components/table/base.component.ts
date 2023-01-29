@@ -1,4 +1,7 @@
-import { Directive, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Directive, Input, OnChanges } from '@angular/core';
+
+import { ITableParams } from '@app/_models';
+import { TableService } from '@app/_services/app';
 
 @Directive()
 export class BaseComponent<T> implements OnChanges {
@@ -9,11 +12,10 @@ export class BaseComponent<T> implements OnChanges {
     @Input() isShowHeader: boolean = true;
     @Input() isShowPaging: boolean = true;
 
-    @Output() updateData = new EventEmitter<[number, number]>();
-
     public keys: Array<keyof T> | undefined;
+    public params: ITableParams = { page: 1, pageSise: 5 };
 
-    constructor() { }
+    constructor(public tableService: TableService) { }
 
     ngOnChanges() {
         if(this.data) {
@@ -32,6 +34,8 @@ export class BaseComponent<T> implements OnChanges {
     }
 
     changePageSise(sise: [number, number]): void {
-        this.updateData.next(sise);
+        this.params.page = sise[0];
+        this.params.pageSise = sise[1];
+        this.tableService.updateParams(this.params);
     }
 }

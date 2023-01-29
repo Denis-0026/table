@@ -12,9 +12,9 @@ export class TableHeaderPipe implements PipeTransform {
 
     transform(value: string | number | symbol, args?: any): string {
 
-        let style = this.configuration.find(x => x.code == value);
-        if (style) {
-            return style.name;
+        let config = this.configuration.find(x => x.code == value);
+        if (config) {
+            return config.name;
         }
         return value as string;
     }

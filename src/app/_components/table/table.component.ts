@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TableService } from '@app/_services/app';
 
 import { BaseComponent } from './base.component';
 
@@ -10,8 +11,8 @@ import { BaseComponent } from './base.component';
 
 export class TableComponent<T> extends BaseComponent<T> implements OnInit {
 
-    constructor() {
-        super();
+    constructor(public override tableService: TableService) {
+        super(tableService);
     }
 
     ngOnInit() {
