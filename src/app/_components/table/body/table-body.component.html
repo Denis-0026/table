@@ -1,7 +1,7 @@
-<div class="table__body">
-    <div class="table__body_row" *ngFor="let row of data">
-        <div class="table__body_item" *ngFor="let key of keys" appColumn [key] = 'key'>
+<tbody class="table__body">
+    <tr class="table__body_row" *ngFor="let row of data">
+        <th class="table__body_item" *ngFor="let key of keys" appColumn [key] = 'key'>
             {{ row[key] }}
-        </div>
-    </div>
-</div>
+        </th>
+    </tr>
+</tbody>

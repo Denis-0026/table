@@ -39,7 +39,6 @@ export class TablePagingComponent implements OnInit {
     goToFirstPage(): void {
         this.page = 1;
         this.selectedSise.next([this.page, this.pageSise]);
-        console.log(this.page);
     }
 
     goToBackPage(): void {
@@ -48,7 +47,6 @@ export class TablePagingComponent implements OnInit {
             this.page = 1;
         }
         this.selectedSise.next([this.page, this.pageSise]);
-        console.log(this.page);
     }
 
     goToNextPage(): void {
@@ -57,12 +55,10 @@ export class TablePagingComponent implements OnInit {
             this.page = this.lastPage;
         }
         this.selectedSise.next([this.page, this.pageSise]);
-        console.log(this.page);
     }
 
     goToLastPage(): void {
         this.page = this.lastPage;
         this.selectedSise.next([this.page, this.pageSise]);
-        console.log(this.page);
     }
 }

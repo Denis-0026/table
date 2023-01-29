@@ -1,4 +1,4 @@
-<div class="table">
+<table class="table">
     <div class="table__data">
         <ng-container *ngIf="isShowHeader">
             <app-table-header [keys]="keys"></app-table-header>
@@ -11,4 +11,4 @@
     <ng-container *ngIf="isShowPaging">
         <app-table-paging [lenght]="lenght" (selectedSise)="changePageSise($event)"></app-table-paging>
     </ng-container>
-</div>
+</table>
