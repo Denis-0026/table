@@ -16,9 +16,9 @@ export class BrandService extends Filter<IBrand> {
     public getBrands(params: ITableParams): Observable<IBrandData> {
         return this.httpClient.get<IBrandData>(`${environment.apiUrl}/brands`).pipe(
             map(x => {
-                let a = this.filterData(x.data, params);
-                x.data = a[0];
-                x.length = a[1];
+                let filteredData = this.filterData(x.data, params);
+                x.data = filteredData[0];
+                x.length = filteredData[1];
                 return x;
             })
         );
