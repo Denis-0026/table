@@ -21,8 +21,21 @@
             .table__header_col_item_title {
                 display: flex;
                 justify-content: center;
+                flex-direction: row;
                 margin: 4px 0px;
                 width: 100%;
+
+                .table__header_col_item_title_txt {
+                    display: flex;
+                    cursor: pointer;
+                }
+
+                .table__header_col_item_title_sort {
+                    display: flex;
+                    width: 16px;
+                    height: 16px;
+                    cursor: pointer;
+                }
             }
 
             .table__header_col_item_search {

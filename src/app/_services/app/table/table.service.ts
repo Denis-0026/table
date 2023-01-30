@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { ITableParams } from '@app/_models';
+import { IFieldSort, ITableParams } from '@app/_models';
 
 @Injectable({providedIn: 'any'})
 export class TableService {
 
-    private _params: ITableParams = { page: 1, pageSise: 5, fieldTerms: [] };
+    private _params: ITableParams = { page: 1, pageSise: 5, fieldTerms: [], sort: null };
     private paramsBehavior: BehaviorSubject<ITableParams> = new BehaviorSubject<ITableParams>(this._params);
     public params$: Observable<ITableParams> = this.paramsBehavior.asObservable();
 
@@ -14,11 +14,13 @@ export class TableService {
     }
     
     updateAllParams(params: ITableParams): void {
+        this._params.page = 1;
         this._params = params;
         this.paramsBehavior.next(this._params);
     }
 
     updatePageSise(pageSise: number): void {
+        this._params.page = 1;
         this._params.pageSise = pageSise;
         this.paramsBehavior.next(this._params);
     }
@@ -28,8 +30,14 @@ export class TableService {
         this.paramsBehavior.next(this._params);
     }
 
-    // TODO
+    updateDirection(sort: IFieldSort | null): void {
+        this._params.page = 1;
+        this._params.sort = sort;
+        this.paramsBehavior.next(this._params);
+    }
+
     updateFieldTerms(key: string | number | symbol, term: string): void {
+        this._params.page = 1;
         const value = this._params.fieldTerms.find(x => x.key === key);
         if(value) {
             if (term && term !== '') {

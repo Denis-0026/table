@@ -3,7 +3,15 @@
         <th class="table__header_col" *ngFor="let key of keys" appColumn [key]='key' [type]='type'>
             <div class="table__header_col_item">
                 <div class="table__header_col_item_title">
-                    {{ key | header }}
+                    <div class="table__header_col_item_title_txt" (click)="sortColumn(key)">
+                        {{ key | header }}
+                    </div>
+                    <div class="table__header_col_item_title_sort" (click)="sortColumn(key)">
+                        <ng-container *ngIf="sort && sort.key === key">
+                            <img *ngIf="sort.direction === 'desc'" src="assets/img/svg/up.svg">
+                            <img *ngIf="sort.direction === 'asc'" src="assets/img/svg/down.svg">
+                        </ng-container>
+                    </div>
                 </div>
                 <div class="table__header_col_item_search">
                     <input #searchByField type="text" (keyup)="search(key, searchByField.value)">

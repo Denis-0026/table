@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TableService } from '@app/_services/app';
+import { Subscription, tap } from 'rxjs';
 
 @Component({
     selector: 'app-table-paging',
@@ -7,7 +8,7 @@ import { TableService } from '@app/_services/app';
     styleUrls: ['./table-paging.component.scss'],
 })
 
-export class TablePagingComponent implements OnInit {
+export class TablePagingComponent implements OnInit, OnDestroy {
 
     @Input() lenght?: number;
     @Input() pageSiseList: Array<number> = [5, 10, 15, 20, 25];
@@ -15,10 +16,19 @@ export class TablePagingComponent implements OnInit {
     public pageSise: number = 5;
     public page: number = 1;
     public lastPage: number = 1;
+    
+    private paramsSubscription: Subscription;
 
-    constructor(private tableService: TableService) { }
+    constructor(private tableService: TableService) {
+        this.paramsSubscription = new Subscription();
+    }
 
     ngOnInit() {
+        this.createParamsSubscription();
+    }
+
+    ngOnDestroy() {
+        this.paramsSubscription.unsubscribe();
     }
 
     ngOnChanges(): void {
@@ -59,5 +69,14 @@ export class TablePagingComponent implements OnInit {
     goToLastPage(): void {
         this.page = this.lastPage;
         this.tableService.updatePage(this.page);
+    }
+
+    createParamsSubscription(): void {
+        this.paramsSubscription = this.tableService.params$.pipe(
+            tap(params => {
+                this.pageSise = params.pageSise;
+                this.page = params.page;
+            })
+        ).subscribe();
     }
 }

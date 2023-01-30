@@ -11,6 +11,7 @@ import { IBrand, IBrandData, IUser, IUserData } from '@app/_models';
 export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const { url, method } = request;
+        let _data = null;
 
         return of(null)
             .pipe(mergeMap(handleRoute))
@@ -30,14 +31,16 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function getBrands(): Observable<HttpResponse<IBrandData>> {
-            let brands = BrandsJson as unknown as Array<IBrand>;
-            let response: IBrandData = { data: brands, length: brands.length };
+            _data = BrandsJson as unknown as Array<IBrand>;
+            let response: IBrandData = { data: _data, length: _data.length };
+            _data = null;
             return ok(response);
         }
 
         function getUsers(): Observable<HttpResponse<IUser>> {
-            let users = UsersJson as unknown as Array<IUser>;
-            let response: IUserData = { data: users, length: users.length };
+            _data = UsersJson as unknown as Array<IUser>;
+            let response: IUserData = { data: _data, length: _data.length };
+            _data = null;
             return ok(response);
         }
 
