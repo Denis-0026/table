@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Direction, Entities } from '@app/_enums';
+import { Direction } from '@app/_enums';
 import { IFieldSort } from '@app/_models';
 import { TableService } from '@app/_services/app';
 
@@ -12,7 +12,6 @@ import { TableService } from '@app/_services/app';
 export class TableHeaderComponent<T> implements OnInit {
 
     @Input() keys?: Array<keyof T>;
-    @Input() type?: Entities;
 
     public sort: IFieldSort | null = null;
 

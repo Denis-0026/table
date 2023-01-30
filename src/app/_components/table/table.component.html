@@ -1,10 +1,10 @@
 <table class="table">
     <div class="table__data">
         <ng-container *ngIf="isShowHeader">
-            <app-table-header [keys]="keys" [type]="type"></app-table-header>
+            <app-table-header [keys]="keys"></app-table-header>
         </ng-container>
         <div class="table__body">
-            <app-table-body [keys]="keys" [data]="data" [type]="type"></app-table-body>
+            <app-table-body [keys]="keys" [data]="data"></app-table-body>
         </div>
     </div>
     

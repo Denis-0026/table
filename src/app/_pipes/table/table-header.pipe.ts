@@ -1,13 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import ConfigurationJson from '../../../assets/configs/table-brands-configuration.json';
+import ConfigurationJson from '../../../assets/configs/table-configuration.json';
 
 @Pipe({
     name: 'header'
 })
 export class TableHeaderPipe implements PipeTransform {
 
-    // TODO
     private configuration = ConfigurationJson;
 
     transform(value: string | number | symbol, args?: any): string {

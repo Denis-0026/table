@@ -1,6 +1,6 @@
 <thead>
     <tr class="table__header">
-        <th class="table__header_col" *ngFor="let key of keys" appColumn [key]='key' [type]='type'>
+        <th class="table__header_col" *ngFor="let key of keys" appColumn [key]='key'>
             <div class="table__header_col_item">
                 <div class="table__header_col_item_title">
                     <div class="table__header_col_item_title_txt" (click)="sortColumn(key)">
